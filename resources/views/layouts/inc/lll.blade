@@ -1,0 +1,129 @@
+ {{-- Navbar --}}
+  <header id="header" class="top">
+    <div class="container navcontainer align-items-center">
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <img src="{{ asset('/uplodes/blog/Postbook.png')}}" class="imglogo" alt="logo" width="7%">
+      <h1 class="logo mr-auto cusnav"><p>{{ config('app.name', 'Laravel') }}</p></h1>
+        <div class=" nav">
+          <ul class="navv">
+            @guest
+              @if (Route::has('login'))
+                <li class="nav-item">
+                  <button type="button" class="btn btn-primary btn-sm"><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></button>
+                </li>
+              @endif
+              @if (Route::has('register'))
+                <li class="nav-item">
+                  <button type="button" class="btn btn-primary btn-sm"><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></button>
+                </li>
+              @endif
+              @else
+              {{-- Navbar Icon --}}
+              {{-- <ul class="navv">
+                <li class="nav-item">
+                  <a href="{{ url('home')}}"><i class="fas fa-home"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ url('alluser') }}"><i class="fas fa-users"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a href="#"><i class="far fa-comment-alt"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a href="#"><i class="far fa-bell"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ url('allfunction') }}"><i class="fas fa-bars"></i></a>
+                </li>
+              </ul> --}}
+              {{-- Navbar Icon --}}
+              
+              {{-- Profile Image --}}
+                <li style="list-style: none;"><a href="{{ url('profile') }}"><img class="profileimg float-end" src="{{ Auth::user()->image }}" style="border-radius: 50%;" alt="" width="6%"></a></li>
+                {{-- Profile image --}}
+
+                {{-- Dropdown Button --}}
+                  <div class="dropdown">
+                    <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{ Auth::user()->name }}
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li>
+                        <a class="dropdown-item" href="{{ url('home')}}"><i class="far fa-home"></i>Home</a>
+                      </li>
+                       <li>
+                        <a class="dropdown-item" href="{{ url('profile') }}"><i class="far fa-user"></i>My Profile</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="{{ url('allfunction') }}"><i class="far fa-info"></i>More</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="far fa-sign-out-alt"></i>{{ __('Logout') }}</a>
+                      </li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      @csrf
+                    </form>
+                  </div>
+                </li>
+              </ul>
+            @endguest
+        </div>
+    </div>
+    
+  </header>
+
+  {{-- Navbar close --}}
+
+
+
+  /* Navbar  */
+
+.navcontainer{
+	display: flex;
+}
+
+.nav .navv a{
+	font-size: 20px;
+	/* color: #094b65; */
+}
+
+.nav .navv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav .navv .nav-item{
+    list-style: none;
+    margin-left: 80px;
+}
+
+.nav .navv .nav-item a{
+    text-decoration: none;
+    padding: 6px 15px;
+    color: #094b65;
+    border-radius: 20px;
+}
+
+.logo{
+    color: #094b65;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.profileimg{
+	margin-right: 10px;
+}
+
+.dropdown-item i{
+	padding-right: 10px;
+}
+
+.top{
+	display: none;
+    top: 35px;
+    width: 100%;
+    position: absolute;
+    z-index: 1;   
+}
+/* Navbar */
